@@ -1,0 +1,32 @@
+{
+  "feature_columns": [
+    "bill_length_mm",
+    "bill_depth_mm",
+    "flipper_length_mm",
+    "body_mass_g",
+    "island_Biscoe",
+    "island_Dream",
+    "island_Torgersen",
+    "sex_Female",
+    "sex_Male"
+  ],
+  "species_classes": [
+    "Adelie",
+    "Chinstrap",
+    "Gentoo"
+  ],
+  "num_classes": 3,
+  "metrics": {
+    "train_accuracy": 1.0,
+    "test_accuracy": 1.0,
+    "train_f1_score": 1.0,
+    "test_f1_score": 1.0
+  },
+  "model_params": {
+    "max_depth": 3,
+    "n_estimators": 100,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8
+  }
+}

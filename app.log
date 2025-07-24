@@ -1,0 +1,26 @@
+2025-07-24 10:17:32,739 - app.main - INFO - Loading model artifacts...
+2025-07-24 10:17:32,825 - app.main - INFO - XGBoost model loaded successfully
+2025-07-24 10:17:32,825 - app.main - INFO - Label encoder loaded successfully
+2025-07-24 10:17:32,826 - app.main - INFO - Loaded metadata - Features: 9, Classes: ['Adelie', 'Chinstrap', 'Gentoo']
+2025-07-24 10:17:32,826 - app.main - INFO - All model artifacts loaded successfully
+2025-07-24 10:41:19,483 - app.main - INFO - Loading model artifacts...
+2025-07-24 10:41:19,572 - app.main - INFO - XGBoost model loaded successfully
+2025-07-24 10:41:19,573 - app.main - INFO - Label encoder loaded successfully
+2025-07-24 10:41:19,574 - app.main - INFO - Loaded metadata - Features: 9, Classes: ['Adelie', 'Chinstrap', 'Gentoo']
+2025-07-24 10:41:19,576 - app.main - INFO - All model artifacts loaded successfully
+2025-07-24 10:41:37,091 - app.main - INFO - Prediction request received: {'bill_length_mm': 1.0, 'bill_depth_mm': 1.0, 'flipper_length_mm': 1.0, 'body_mass_g': 1.0, 'sex': <Sex.Male: 'male'>, 'island': <Island.Torgersen: 'Torgersen'>}
+2025-07-24 10:41:37,091 - app.main - INFO - Making prediction for penguin species
+2025-07-24 10:41:37,105 - app.main - INFO - Prediction completed: Adelie (confidence: 0.9809)
+2025-07-24 10:41:37,106 - app.main - INFO - Prediction successful: Adelie
+2025-07-24 10:42:58,820 - app.main - INFO - Prediction request received: {'bill_length_mm': 39.1, 'bill_depth_mm': 18.7, 'flipper_length_mm': 181.0, 'body_mass_g': 3750.0, 'sex': <Sex.Male: 'male'>, 'island': <Island.Torgersen: 'Torgersen'>}
+2025-07-24 10:42:58,820 - app.main - INFO - Making prediction for penguin species
+2025-07-24 10:42:58,826 - app.main - INFO - Prediction completed: Adelie (confidence: 0.9980)
+2025-07-24 10:42:58,826 - app.main - INFO - Prediction successful: Adelie
+2025-07-24 10:44:03,042 - app.main - INFO - Prediction request received: {'bill_length_mm': 46.1, 'bill_depth_mm': 13.2, 'flipper_length_mm': 211.0, 'body_mass_g': 4500.0, 'sex': <Sex.Female: 'female'>, 'island': <Island.Biscoe: 'Biscoe'>}
+2025-07-24 10:44:03,042 - app.main - INFO - Making prediction for penguin species
+2025-07-24 10:44:03,049 - app.main - INFO - Prediction completed: Gentoo (confidence: 0.9827)
+2025-07-24 10:44:03,049 - app.main - INFO - Prediction successful: Gentoo
+2025-07-24 10:44:16,117 - app.main - INFO - Prediction request received: {'bill_length_mm': 46.5, 'bill_depth_mm': 17.9, 'flipper_length_mm': 192.0, 'body_mass_g': 3500.0, 'sex': <Sex.Male: 'male'>, 'island': <Island.Dream: 'Dream'>}
+2025-07-24 10:44:16,117 - app.main - INFO - Making prediction for penguin species
+2025-07-24 10:44:16,126 - app.main - INFO - Prediction completed: Chinstrap (confidence: 0.6134)
+2025-07-24 10:44:16,126 - app.main - INFO - Prediction successful: Chinstrap

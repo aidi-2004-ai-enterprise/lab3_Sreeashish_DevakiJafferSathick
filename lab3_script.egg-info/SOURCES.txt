@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+app/main.py
+lab3_script.egg-info/PKG-INFO
+lab3_script.egg-info/SOURCES.txt
+lab3_script.egg-info/dependency_links.txt
+lab3_script.egg-info/requires.txt
+lab3_script.egg-info/top_level.txt
