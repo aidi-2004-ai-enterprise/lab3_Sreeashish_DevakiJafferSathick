@@ -12,3 +12,4 @@ Requires-Dist: seaborn
 Requires-Dist: matplotlib
 Requires-Dist: pydantic
 Requires-Dist: python-multipart
+Requires-Dist: locust>=2.25.0

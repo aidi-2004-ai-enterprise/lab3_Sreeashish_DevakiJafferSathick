@@ -8,3 +8,4 @@ seaborn
 matplotlib
 pydantic
 python-multipart
+locust>=2.25.0

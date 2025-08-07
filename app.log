@@ -50,3 +50,9 @@
 2025-07-24 10:56:12,734 - app.main - INFO - Making prediction for penguin species
 2025-07-24 10:56:12,744 - app.main - INFO - Prediction completed: Gentoo (confidence: 0.9827)
 2025-07-24 10:56:12,745 - app.main - INFO - Prediction successful: Gentoo
+2025-08-07 12:51:43,951 - app.main - INFO - Loading model artifacts...
+2025-08-07 12:51:44,041 - app.main - INFO - XGBoost model loaded successfully
+2025-08-07 12:51:44,043 - app.main - INFO - Label encoder loaded successfully
+2025-08-07 12:51:44,043 - app.main - INFO - Loaded metadata - Features: 9, Classes: ['Adelie', 'Chinstrap', 'Gentoo']
+2025-08-07 12:51:44,043 - app.main - INFO - All model artifacts loaded successfully
+2025-08-07 12:54:42,861 - app.main - INFO - Root endpoint accessed

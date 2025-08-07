@@ -6,13 +6,14 @@ dependencies = [
     "fastapi",
     "uvicorn[standard]",
     "pandas",
-    "numpy", 
+    "numpy",
     "scikit-learn",
     "xgboost",
     "seaborn",
     "matplotlib",
     "pydantic",
     "python-multipart",
+    "locust>=2.25.0",
 ]
 
 [build-system]
