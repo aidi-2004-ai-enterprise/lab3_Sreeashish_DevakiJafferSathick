@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
 import numpy as np
 import pandas as pd
-from app.main import app, model_manager
+from app.main import app, model_manager, PenguinFeatures
 
 client = TestClient(app)
 
@@ -69,10 +69,10 @@ class TestPenguinAPI:
         response = client.post("/predict", json=invalid_data)
         assert response.status_code == 422
         
-        # Boolean instead of numeric
+        # Non-numeric string that can't be converted
         invalid_data2 = {
             "bill_length_mm": 39.1,
-            "bill_depth_mm": True,
+            "bill_depth_mm": "not_a_number",
             "flipper_length_mm": 181.0,
             "body_mass_g": 3750.0,
             "sex": "male",
@@ -268,16 +268,16 @@ class TestPenguinAPI:
 
     def test_model_feature_preparation(self):
         """Test that feature preparation works correctly"""
-        from app.main import PenguinFeatures
+        from app.main import PenguinFeatures, Sex, Island
         
-        # Test feature preparation directly
+        # Test feature preparation directly - using the proper Enum values
         features = PenguinFeatures(
             bill_length_mm=39.1,
             bill_depth_mm=18.7,
             flipper_length_mm=181.0,
             body_mass_g=3750.0,
-            sex="male",
-            island="Torgersen"
+            sex=Sex.Male,  # Use the Enum value
+            island=Island.Torgersen  # Use the Enum value
         )
         
         prepared_features = model_manager._prepare_features(features)

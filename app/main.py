@@ -8,7 +8,7 @@ from enum import Enum
 import pandas as pd
 import xgboost as xgb
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 # Configure logging
 logging.basicConfig(
@@ -42,15 +42,8 @@ class PenguinFeatures(BaseModel):
     This model ensures that all required features are provided and that
     categorical features are restricted to valid values seen during training.
     """
-    bill_length_mm: float = Field(..., gt=0, description="Bill length in millimeters")
-    bill_depth_mm: float = Field(..., gt=0, description="Bill depth in millimeters") 
-    flipper_length_mm: float = Field(..., gt=0, description="Flipper length in millimeters")
-    body_mass_g: float = Field(..., gt=0, description="Body mass in grams")
-    sex: Sex = Field(..., description="Sex of the penguin")
-    island: Island = Field(..., description="Island where penguin was observed")
-
-    class Config:
-        schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "bill_length_mm": 39.1,
                 "bill_depth_mm": 18.7,
@@ -60,6 +53,14 @@ class PenguinFeatures(BaseModel):
                 "island": "Torgersen"
             }
         }
+    )
+    
+    bill_length_mm: float = Field(..., gt=0, description="Bill length in millimeters")
+    bill_depth_mm: float = Field(..., gt=0, description="Bill depth in millimeters") 
+    flipper_length_mm: float = Field(..., gt=0, description="Flipper length in millimeters")
+    body_mass_g: float = Field(..., gt=0, description="Body mass in grams")
+    sex: Sex = Field(..., description="Sex of the penguin")
+    island: Island = Field(..., description="Island where penguin was observed")
 
 
 class PredictionResponse(BaseModel):
@@ -132,10 +133,10 @@ class ModelManager:
             pd.DataFrame: Preprocessed features ready for prediction
         """
         try:
-            logger.debug(f"Preparing features for prediction: {features.dict()}")
+            logger.debug(f"Preparing features for prediction: {features.model_dump()}")
             
             # Convert input to dictionary
-            feature_dict = features.dict()
+            feature_dict = features.model_dump()
             
             # Create DataFrame with a single row
             input_df = pd.DataFrame([feature_dict])
@@ -231,7 +232,7 @@ async def root() -> Dict[str, str]:
 
 
 @app.get("/health")
-async def health_check() -> Dict[str, str]:
+async def health_check() -> Dict[str, Any]:
     """Health check endpoint."""
     logger.info("Health check endpoint accessed")
     return {"status": "healthy", "model_loaded": model_manager.model is not None}
@@ -252,7 +253,7 @@ async def predict_species(features: PenguinFeatures) -> PredictionResponse:
         HTTPException: For invalid input or prediction errors
     """
     try:
-        logger.info(f"Prediction request received: {features.dict()}")
+        logger.info(f"Prediction request received: {features.model_dump()}")
         
         # Validate that model is loaded
         if model_manager.model is None:
@@ -260,21 +261,6 @@ async def predict_species(features: PenguinFeatures) -> PredictionResponse:
             raise HTTPException(
                 status_code=500,
                 detail="Model not available"
-            )
-        
-        # Additional validation for enum values (handled by Pydantic but logged)
-        if features.sex not in [Sex.Male, Sex.Female]:
-            logger.warning(f"Invalid sex value attempted: {features.sex}")
-            raise HTTPException(
-                status_code=400,
-                detail=f"Invalid sex value. Must be one of: {[e.value for e in Sex]}"
-            )
-        
-        if features.island not in [Island.Torgersen, Island.Biscoe, Island.Dream]:
-            logger.warning(f"Invalid island value attempted: {features.island}")
-            raise HTTPException(
-                status_code=400, 
-                detail=f"Invalid island value. Must be one of: {[e.value for e in Island]}"
             )
         
         # Make prediction
