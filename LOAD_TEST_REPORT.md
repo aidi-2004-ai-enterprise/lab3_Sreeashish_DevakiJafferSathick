@@ -8,30 +8,30 @@ Date: 2025-08-08
 Test Results
 Baseline Test (1 user, 60s)
 bashuv run locust -f locustfile.py --host $SERVICE_URL --users 1 --spawn-rate 1 --run-time 60s --headless
-Results: [Add your actual results here]
+Results:
 
-Total requests: X
-RPS: X
-Avg response time: X ms
-Failures: X%
+Total requests: 29
+RPS: 0.50
+Avg response time: 89 ms
+Failures: 0%
 
 Normal Load (10 users, 5min)
 bashuv run locust -f locustfile.py --host $SERVICE_URL --users 10 --spawn-rate 2 --run-time 300s --headless
-Results: [Add your actual results here]
+Results:
 
-Total requests: X
-RPS: X
-Avg response time: X ms
-Failures: X%
+Total requests:  1,458
+RPS: 4.87
+Avg response time: 72 ms
+Failures: 0%
 
 Stress Test (50 users, 2min)
 bashuv run locust -f locustfile.py --host $SERVICE_URL --users 50 --spawn-rate 5 --run-time 120s --headless
-Results: [Add your actual results here]
+Results:
 
-Total requests: X
-RPS: X
-Avg response time: X ms
-Failures: X%
+Total requests: 2,845
+RPS: 23.75
+Avg response time: 72 ms
+Failures: 0%
 
 Analysis
 Performance
